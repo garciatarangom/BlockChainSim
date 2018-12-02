@@ -41,8 +41,12 @@ public class MainFrame extends JFrame {
         Action saveAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registros.addRegistro(namefield.getText(), (passfield.getPassword()).toString(), Double.parseDouble(bitfield.getText())); //agregar nuevo objeto registro a la lista
+                registros.addRegistro(namefield.getText(), String.valueOf(passfield.getPassword()), Double.parseDouble(bitfield.getText())); //agregar nuevo objeto registro a la lista
+                System.out.println("#####REGISTROS#########");
                 System.out.println(registros.toString()); //Imprimir la lista de registros
+                namefield.setText("");
+                passfield.setText("");
+                bitfield.setText("");
             } //end actionPerformed
         }; //end saveAction
         save.addActionListener(saveAction);
