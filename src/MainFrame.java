@@ -41,8 +41,8 @@ public class MainFrame extends JFrame {
         Action saveAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Registro nuevoRegistro = new Registro(namefield.getText(),String.valueOf(passfield.getPassword()), Double.parseDouble(bitfield.getText()));
-                System.out.println (nuevoRegistro.toSHA1());
+                Registro nuevoRegistro = new Registro(namefield.getText(), String.valueOf(passfield.getPassword()), Double.parseDouble(bitfield.getText()));
+                nuevoRegistro.setSignature(nuevoRegistro.toSHA1());
                 registros.addRegistro(nuevoRegistro); //agregar nuevo objeto registro a la lista
                 System.out.println("#####REGISTROS#########");
                 System.out.println(registros.toString()); //Imprimir la lista de registros

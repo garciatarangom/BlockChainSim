@@ -1,4 +1,5 @@
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.codec.binary.Hex;
 
 public class Registro {
     private String name;
@@ -35,16 +36,29 @@ public class Registro {
         return bitcoins;
     } //end getBitcoins
 
-    public void setBictoins(Double bitcoins) {
+    public void setBitcoins(Double bitcoins) {
         this.bitcoins = bitcoins;
     } //end setBitcoins
 
-    public byte[] getSignature(){
+    public byte[] getSignature() {
         return signature;
     }//end getSinature
 
-    public void setSignature(byte[]signature){
-        this.signature = signature;
+    public void setNonce(int nonce) {
+        this.nonce = nonce;
+    }//end setNonce
+
+    public int getNonce() {
+        return nonce;
+    }//end getNonce
+
+    public void setSignature(String signature) {
+        try {
+            this.signature = Hex.decodeHex(signature);
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+
     }//end setSignature
 
     @Override
@@ -53,12 +67,13 @@ public class Registro {
         resultado = resultado + getName() + "/" + getPassword() + "/" + getBitcoins().toString() + "/";
         return resultado;
     }
-    public byte[] toByte(){
+
+    public byte[] toByte() {
         return toString().getBytes();
     }
 
 
-    public String toSHA1(){
+    public String toSHA1() {
         return DigestUtils.sha1Hex(toByte());
     }
 } //end Registro class
