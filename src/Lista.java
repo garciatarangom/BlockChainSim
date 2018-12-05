@@ -20,9 +20,10 @@ public class Lista {
         String result = "";
         for (Registro element : list) { //Para cada elemento de tipo registro en list
             result = result + "#######################\n"; //Imprime in divisor de registros
-            result = result + "Nombre:" + element.getName() + "\n"; //Imprime el nombre de cliente
+            /*result = result + "Nombre:" + element.getName() + "\n"; //Imprime el nombre de cliente
             result = result + "Password:" + element.getPassword() + "\n"; //Imprime el nombre de cliente
-            result = result + "Bicoins:" + element.getBitcoins() + "\n"; //Imprime el numero de bitcoins
+            result = result + "Bicoins:" + element.getBitcoins() + "\n"; //Imprime el numero de bitcoins*/
+            result = result + element.toString();
         } //end for
         return result; //regresa todos los nombres de cada registro
     } //end toString
