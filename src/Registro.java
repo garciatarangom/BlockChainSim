@@ -76,7 +76,7 @@ public class Registro {
 
     public String toSHA1() {
         String resultado = DigestUtils.sha1Hex(toByte());
-        while(resultado.substring(0,4) != "00000" ){
+        while(resultado.substring(0,5) != "00000" ){
             resultado = DigestUtils.sha1Hex(toByte());
             System.out.println(resultado);
             this.nonce = this.nonce + 1;
