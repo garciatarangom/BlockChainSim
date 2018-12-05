@@ -8,7 +8,7 @@ public class Registro {
     private byte[] signature;
     private int nonce;
 
-    public Registro(String name, String password, Double bitcoins) {
+    Registro(String name, String password, Double bitcoins) {
         this.name = name;
         this.password = password;
         this.bitcoins = bitcoins;
@@ -16,7 +16,7 @@ public class Registro {
 
     } // end Registro constructor
 
-    public String getName() {
+    private String getName() {
         return name;
     } //end getName
 
@@ -24,7 +24,7 @@ public class Registro {
         this.name = name;
     } //end setName
 
-    public String getPassword() {
+    private String getPassword() {
         return password;
     } //end getPassword
 
@@ -32,7 +32,7 @@ public class Registro {
         this.password = password;
     } //end setPassword
 
-    public Double getBitcoins() {
+    private Double getBitcoins() {
         return bitcoins;
     } //end getBitcoins
 
@@ -44,15 +44,15 @@ public class Registro {
         return signature;
     }//end getSinature
 
-    public void setNonce(int nonce) {
+    void setNonce(int nonce) {
         this.nonce = nonce;
     }//end setNonce
 
-    public int getNonce() {
+    private int getNonce() {
         return nonce;
     }//end getNonce
 
-    public void setSignature(String signature) {
+    void setSignature(String signature) {
         try {
             this.signature = Hex.decodeHex(signature);
             System.out.println(signature);
@@ -65,18 +65,18 @@ public class Registro {
     @Override
     public String toString() {
         String resultado = "";
-        resultado = resultado + getName() + "/" + getPassword() + "/" + getBitcoins().toString() + "/" + Integer.toString(getNonce());
+        resultado = resultado + getBitcoins().toString() + getName() + "/" + getPassword() + "/" + "/" + Integer.toString(getNonce());
         return resultado;
     }
 
-    public byte[] toByte() {
+    private byte[] toByte() {
         return toString().getBytes();
     }
 
 
-    public String toSHA1() {
+    String toSHA1() {
         String resultado = DigestUtils.sha1Hex(toByte());
-        while(resultado.substring(0,5) != "00000" ){
+        while(!resultado.substring(0,5).equals("00000")){
             resultado = DigestUtils.sha1Hex(toByte());
             System.out.println(resultado);
             this.nonce = this.nonce + 1;

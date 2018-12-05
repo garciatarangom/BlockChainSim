@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 
-public class MainFrame extends JFrame {
+class MainFrame extends JFrame {
 
     {
         this.setSize(500, 200);
@@ -11,10 +11,10 @@ public class MainFrame extends JFrame {
         this.init();
     } //end initializer
 
-    Lista registros = new Lista();
+    private Lista registros = new Lista();
 
 
-    public MainFrame() {
+    MainFrame() {
         init();
     } //end MainFrame constructor
 
