@@ -55,6 +55,7 @@ public class Registro {
     public void setSignature(String signature) {
         try {
             this.signature = Hex.decodeHex(signature);
+            System.out.println(signature);
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
@@ -64,7 +65,7 @@ public class Registro {
     @Override
     public String toString() {
         String resultado = "";
-        resultado = resultado + getName() + "/" + getPassword() + "/" + getBitcoins().toString() + "/";
+        resultado = resultado + getName() + "/" + getPassword() + "/" + getBitcoins().toString() + "/" + Integer.toString(getNonce());
         return resultado;
     }
 
@@ -74,6 +75,12 @@ public class Registro {
 
 
     public String toSHA1() {
-        return DigestUtils.sha1Hex(toByte());
+        String resultado = DigestUtils.sha1Hex(toByte());
+        while(resultado.substring(0,4) != "00000" ){
+            resultado = DigestUtils.sha1Hex(toByte());
+            System.out.println(resultado);
+            this.nonce = this.nonce + 1;
+        }
+        return resultado;
     }
 } //end Registro class
