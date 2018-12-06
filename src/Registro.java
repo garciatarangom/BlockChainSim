@@ -1,5 +1,6 @@
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.codec.binary.Hex;
+import org.jetbrains.annotations.Contract;
 
 public class Registro {
     private String name;
@@ -7,6 +8,7 @@ public class Registro {
     private Double bitcoins;
     private byte[] signature;
     private int nonce;
+    private byte[] merkleHash;
 
     Registro(String name, String password, Double bitcoins) {
         this.name = name;
